@@ -1,4 +1,4 @@
-name: Robot Tests - ServeRest 👷
+name: Robot Tests - convergentes-academy-api 👷
 
 on:
   push:
