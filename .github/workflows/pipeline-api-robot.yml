@@ -39,7 +39,7 @@ jobs:
 
       - run: echo "🤖 Execute tests API of ServeRest 🤖"
       - name: Run Robot Framework tests
-        run: robot --outputdir reports/tests/
+        run: robot --outputdir reports/ tests/
 
       - run: echo "📝 Saving Report Tests 📝"
       - name: Upload Results
