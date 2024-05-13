@@ -48,21 +48,3 @@ jobs:
         with:
           name: results-tests
           path: results/
-
-      - run: echo "🧪 Settings GithubPages 🧪"
-      - name: Configure Github Pages
-        uses: actions/configure-pages@v5
-        if: always()
-
-      - run: echo "✅ Upload Page Artifacts ✅"
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        if: always()
-        with:
-          path: results/
-
-      - run: echo "🚀 Deploy Report Tests 🚀"
-      - name: Deploy Github Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        if: always()
