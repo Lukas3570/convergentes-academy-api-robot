@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: API Tests ServRest
+    name: API Tests Convergentes
     runs-on: ubuntu-latest
 
     permissions:
