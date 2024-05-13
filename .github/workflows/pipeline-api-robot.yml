@@ -1,0 +1,68 @@
+name: Robot Tests - ServeRest 👷
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+  
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: API Tests ServRest
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: https://santosvini.github.io/serverest-qacoders/report.html
+
+    steps:
+      - run: echo "🚀 Clone repository on virtual machine 🚀"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - run: echo "🌱 Install Python v3.12 🌱"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: echo "➕ Install Dependencies of Project ➕"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - run: echo "🤖 Execute tests API of ServeRest 🤖"
+      - name: Run Robot Framework tests
+        run: robot --outputdir reports/tests/
+
+      - run: echo "📝 Saving Report Tests 📝"
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: results-tests
+          path: results/
+
+      - run: echo "🧪 Settings GithubPages 🧪"
+      - name: Configure Github Pages
+        uses: actions/configure-pages@v5
+        if: always()
+
+      - run: echo "✅ Upload Page Artifacts ✅"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: results/
+
+      - run: echo "🚀 Deploy Report Tests 🚀"
+      - name: Deploy Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: always()
