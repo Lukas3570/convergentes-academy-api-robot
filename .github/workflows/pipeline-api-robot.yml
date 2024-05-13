@@ -20,7 +20,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: https://santosvini.github.io/serverest-qacoders/report.html
+      url: https://github.com/Lukas3570/convergentes-academy-api-robot/report.html
 
     steps:
       - run: echo "🚀 Clone repository on virtual machine 🚀"
